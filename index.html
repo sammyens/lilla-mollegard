@@ -7,100 +7,171 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --green: #3B6D11;
-    --green-light: #EAF3DE;
-    --green-mid: #639922;
-    --bg: #FAFAF7;
-    --card: #FFFFFF;
-    --text: #1a1a1a;
-    --text-muted: #666;
-    --border: #E5E5E0;
+    --bg: #F5F0E8;
+    --bg2: #EDE7D9;
+    --card: #FDFAF5;
+    --brown: #5C3D2E;
+    --brown-mid: #7A5240;
+    --brown-light: #C4A882;
+    --brown-hover: #4A3124;
+    --text: #3B2A1E;
+    --text-muted: #8C7355;
+    --border: #DDD0B8;
     --radius: 12px;
+    --green: #4A6741;
+    --green-light: #EAF0E6;
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-  header { background: var(--green); padding: 1.25rem 1.5rem; }
-  header h1 { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
-  header p { color: rgba(255,255,255,0.7); font-size: 13px; margin-top: 2px; }
-  main { max-width: 600px; margin: 0 auto; padding: 1.25rem 1rem 4rem; }
-  .add-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-bottom: 1.25rem; }
-  .add-box input { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 15px; color: var(--text); background: var(--bg); margin-bottom: 8px; outline: none; }
-  .add-box input:focus { border-color: var(--green-mid); }
-  .add-row { display: flex; gap: 8px; }
-  .add-box select { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 9px 10px; font-size: 14px; color: var(--text-muted); background: var(--bg); outline: none; }
-  .add-box button { background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 14px; font-weight: 500; cursor: pointer; }
-  .add-box button:active { opacity: 0.85; }
+
+  header { background: var(--brown); padding: 1.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; }
+  header p { color: var(--brown-light); font-size: 12px; margin-top: 4px; letter-spacing: 0.05em; }
+
+  main { max-width: 620px; margin: 0 auto; padding: 1.25rem 1rem 5rem; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.25rem; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 700; color: var(--brown); }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.03em; }
+
   .progress-wrap { margin-bottom: 1.25rem; }
   .progress-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
-  .progress-bar-bg { height: 4px; background: var(--border); border-radius: 999px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: var(--green); border-radius: 999px; transition: width 0.3s; }
-  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
-  .tab { padding: 5px 12px; border-radius: 999px; font-size: 13px; border: 1px solid var(--border); background: var(--card); color: var(--text-muted); cursor: pointer; }
-  .tab.active { background: var(--green); color: #fff; border-color: var(--green); }
-  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--text-muted); text-transform: uppercase; margin: 1.25rem 0 0.5rem; }
+  .progress-bar-bg { height: 5px; background: var(--border); border-radius: 999px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: var(--brown); border-radius: 999px; transition: width 0.4s ease; }
+
+  .add-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-bottom: 1.25rem; }
+  .add-box label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px; }
+  .add-box input[type=text], .add-box textarea { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 14px; color: var(--text); background: var(--bg); outline: none; font-family: inherit; }
+  .add-box input[type=text]:focus, .add-box textarea:focus { border-color: var(--brown-light); }
+  .add-box textarea { resize: none; height: 56px; margin-top: 8px; }
+  .add-row { display: flex; gap: 8px; margin-top: 8px; }
+  .add-box select { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 9px 10px; font-size: 13px; color: var(--text-muted); background: var(--bg); outline: none; font-family: inherit; }
+  .prio-select { max-width: 110px; }
+  .add-box button { background: var(--brown); color: #F5F0E8; border: none; border-radius: 8px; padding: 9px 18px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; letter-spacing: 0.02em; }
+  .add-box button:active { background: var(--brown-hover); }
+
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
+  .tab { padding: 5px 13px; border-radius: 999px; font-size: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text-muted); cursor: pointer; letter-spacing: 0.02em; }
+  .tab.active { background: var(--brown); color: #F5F0E8; border-color: var(--brown); }
+  .filter-divider { width: 1px; height: 20px; background: var(--border); margin: 0 2px; }
+  .show-done-btn { font-size: 12px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; margin-left: auto; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin: 1.25rem 0 0.5rem; }
   .task-list { display: flex; flex-direction: column; gap: 6px; }
-  .task { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; transition: opacity 0.2s; }
-  .task.done { opacity: 0.45; }
+
+  .task { display: flex; align-items: flex-start; gap: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; transition: opacity 0.2s; }
+  .task.done { opacity: 0.4; }
   .task.done .task-text { text-decoration: line-through; }
-  .task input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--green); flex-shrink: 0; }
-  .task-text { flex: 1; font-size: 14px; }
-  .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; flex-shrink: 0; font-weight: 500; }
-  .badge-kafe { background: #E1F5EE; color: #0F6E56; }
-  .badge-kok { background: #FAEEDA; color: #854F0B; }
-  .badge-tradgard { background: #EAF3DE; color: #3B6D11; }
-  .badge-forsaljning { background: #E6F1FB; color: #185FA5; }
-  .badge-ovrigt { background: #F1EFE8; color: #5F5E5A; }
-  .del-btn { background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px; padding: 0 2px; line-height: 1; }
-  .del-btn:hover { color: #e24b4a; }
-  .empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
-  .syncing { position: fixed; bottom: 1rem; right: 1rem; background: var(--green); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 12px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .task.prio-hog { border-left: 3px solid #B85C38; }
+  .task.prio-lag { border-left: 3px solid var(--brown-light); }
+  .task input[type=checkbox] { width: 17px; height: 17px; cursor: pointer; accent-color: var(--brown); flex-shrink: 0; margin-top: 2px; }
+  .task-body { flex: 1; min-width: 0; }
+  .task-text { font-size: 14px; color: var(--text); line-height: 1.4; }
+  .task-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+  .task-meta { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; align-items: center; }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 500; letter-spacing: 0.03em; }
+  .badge-kafe { background: #EAF0E6; color: #3B6030; }
+  .badge-kok { background: #F5EBD8; color: #7A4F1E; }
+  .badge-tradgard { background: #E6EFE3; color: #3A5C35; }
+  .badge-forsaljning { background: #E8EAF0; color: #2E3A6E; }
+  .badge-ovrigt { background: #EDE7D9; color: #6B5740; }
+  .prio-badge { font-size: 10px; padding: 2px 7px; border-radius: 999px; }
+  .prio-hog-badge { background: #FAEAE3; color: #B85C38; }
+  .prio-lag-badge { background: #F0EBE5; color: #9C8060; }
+  .task-date { font-size: 10px; color: var(--text-muted); margin-left: auto; }
+  .del-btn { background: none; border: none; cursor: pointer; color: var(--border); font-size: 18px; padding: 0 2px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+  .del-btn:hover { color: #B85C38; }
+
+  .empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); font-size: 14px; }
+  .empty-icon { font-size: 32px; margin-bottom: 8px; }
+
+  .syncing { position: fixed; bottom: 1.25rem; right: 1.25rem; background: var(--brown); color: #F5F0E8; padding: 7px 16px; border-radius: 999px; font-size: 12px; opacity: 0; transition: opacity 0.3s; pointer-events: none; letter-spacing: 0.03em; }
   .syncing.show { opacity: 1; }
+
+  .last-updated { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 1.5rem; }
 </style>
 </head>
 <body>
 <header>
-  <h1>🌸 Lilla Möllegård</h1>
-  <p>Gårdsbutik · Att göra</p>
+  <img src="logo.png" alt="Lilla Möllegård" style="width: 90px; height: 90px; object-fit: contain; margin-bottom: 8px; border-radius: 8px;" />
+  <p>Intern att göra-lista</p>
 </header>
+
 <main>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num" id="statTodo">–</div><div class="stat-label">Att göra</div></div>
+    <div class="stat-card"><div class="stat-num" id="statDone">–</div><div class="stat-label">Avklarade</div></div>
+    <div class="stat-card"><div class="stat-num" id="statHog">–</div><div class="stat-label">Hög prioritet</div></div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top"><span id="progressText">Laddar...</span><span id="progressPct"></span></div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+
   <div class="add-box">
-    <input type="text" id="newTask" placeholder="Ny uppgift..." />
+    <label>Ny uppgift</label>
+    <input type="text" id="newTask" placeholder="Vad behöver göras?" />
+    <textarea id="newNote" placeholder="Anteckning (valfritt)..."></textarea>
     <div class="add-row">
       <select id="newCat">
-        <option value="kafe">Kafé</option>
-        <option value="kok">Kök</option>
-        <option value="tradgard">Trädgård</option>
-        <option value="forsaljning">Försäljning</option>
-        <option value="ovrigt">Övrigt</option>
+        <option value="kafe">☕ Kafé</option>
+        <option value="kok">🍽 Kök</option>
+        <option value="tradgard">🌸 Trädgård</option>
+        <option value="forsaljning">🛍 Försäljning</option>
+        <option value="ovrigt">📋 Övrigt</option>
+      </select>
+      <select id="newPrio" class="prio-select">
+        <option value="normal">Normal</option>
+        <option value="hog">Hög prio</option>
+        <option value="lag">Låg prio</option>
       </select>
       <button onclick="addTask()">+ Lägg till</button>
     </div>
   </div>
-  <div class="progress-wrap">
-    <div class="progress-top"><span id="progressText">Laddar...</span><span id="progressPct">0%</span></div>
-    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+
+  <div class="filter-row" id="tabs">
+    <button class="tab active" onclick="setTab('alla')">Alla</button>
+    <button class="tab" onclick="setTab('kafe')">☕ Kafé</button>
+    <button class="tab" onclick="setTab('kok')">🍽 Kök</button>
+    <button class="tab" onclick="setTab('tradgard')">🌸 Trädgård</button>
+    <button class="tab" onclick="setTab('forsaljning')">🛍 Försäljning</button>
+    <button class="tab" onclick="setTab('ovrigt')">📋 Övrigt</button>
+    <button class="show-done-btn" onclick="toggleDone()" id="toggleDoneBtn">Visa avklarade</button>
   </div>
-  <div class="tabs" id="tabs"></div>
+
   <div class="task-list" id="taskList"></div>
-  <div class="empty" id="emptyMsg" style="display:none">Inga uppgifter här! Lägg till en ovan.</div>
+  <div class="empty" id="emptyMsg" style="display:none">
+    <div class="empty-icon">🌿</div>
+    Inga uppgifter här just nu!
+  </div>
+  <div class="last-updated" id="lastUpdated"></div>
 </main>
+
 <div class="syncing" id="syncing">Sparar...</div>
 
 <script>
 const CATS = {
-  kafe: { label: 'Kafé', badge: 'badge-kafe' },
-  kok: { label: 'Kök', badge: 'badge-kok' },
-  tradgard: { label: 'Trädgård', badge: 'badge-tradgard' },
-  forsaljning: { label: 'Försäljning', badge: 'badge-forsaljning' },
-  ovrigt: { label: 'Övrigt', badge: 'badge-ovrigt' }
+  kafe: { label: 'Kafé', badge: 'badge-kafe', icon: '☕' },
+  kok: { label: 'Kök', badge: 'badge-kok', icon: '🍽' },
+  tradgard: { label: 'Trädgård', badge: 'badge-tradgard', icon: '🌸' },
+  forsaljning: { label: 'Försäljning', badge: 'badge-forsaljning', icon: '🛍' },
+  ovrigt: { label: 'Övrigt', badge: 'badge-ovrigt', icon: '📋' }
 };
 
 let tasks = [];
 let activeTab = 'alla';
+let showDone = false;
 
 function showSync() {
   const el = document.getElementById('syncing');
   el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 1500);
+  setTimeout(() => el.classList.remove('show'), 1800);
+}
+
+function formatDate(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
 }
 
 async function load() {
@@ -108,18 +179,28 @@ async function load() {
     const r = await fetch('/tasks');
     tasks = await r.json();
     render();
-  } catch(e) { document.getElementById('progressText').textContent = 'Kunde inte ansluta'; }
+    document.getElementById('lastUpdated').textContent = 'Uppdaterad ' + new Date().toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+  } catch(e) {
+    document.getElementById('progressText').textContent = 'Anslutningsfel – försök igen';
+  }
 }
 
 async function addTask() {
   const input = document.getElementById('newTask');
+  const note = document.getElementById('newNote');
   const cat = document.getElementById('newCat').value;
+  const prio = document.getElementById('newPrio').value;
   const text = input.value.trim();
-  if (!text) return;
-  const r = await fetch('/tasks', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ text, cat, done: false }) });
+  if (!text) { input.focus(); return; }
+  const r = await fetch('/tasks', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ text, note: note.value.trim(), cat, prio, done: false, created: Date.now() })
+  });
   const task = await r.json();
   tasks.push(task);
   input.value = '';
+  note.value = '';
   showSync();
   render();
 }
@@ -128,12 +209,14 @@ async function toggleTask(id) {
   const t = tasks.find(t => t.id === id);
   if (!t) return;
   t.done = !t.done;
+  t.doneAt = t.done ? Date.now() : null;
   render();
-  await fetch('/tasks/' + id, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ done: t.done }) });
+  await fetch('/tasks/' + id, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ done: t.done, doneAt: t.doneAt }) });
   showSync();
 }
 
 async function deleteTask(id) {
+  if (!confirm('Ta bort uppgiften?')) return;
   tasks = tasks.filter(t => t.id !== id);
   render();
   await fetch('/tasks/' + id, { method: 'DELETE' });
@@ -142,64 +225,91 @@ async function deleteTask(id) {
 
 document.getElementById('newTask').addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
 
+function toggleDone() {
+  showDone = !showDone;
+  document.getElementById('toggleDoneBtn').textContent = showDone ? 'Dölj avklarade' : 'Visa avklarade';
+  render();
+}
+
 function render() {
   renderTabs();
   renderList();
-  renderProgress();
+  renderStats();
 }
 
 function renderTabs() {
-  const c = document.getElementById('tabs');
-  const allCount = tasks.filter(t => !t.done).length;
-  let html = `<button class="tab ${activeTab==='alla'?'active':''}" onclick="setTab('alla')">Alla (${allCount})</button>`;
-  for (const [k, v] of Object.entries(CATS)) {
-    const count = tasks.filter(t => t.cat === k && !t.done).length;
-    html += `<button class="tab ${activeTab===k?'active':''}" onclick="setTab('${k}')">${v.label} (${count})</button>`;
-  }
-  c.innerHTML = html;
+  const btns = document.querySelectorAll('.tab');
+  const tabKeys = ['alla', 'kafe', 'kok', 'tradgard', 'forsaljning', 'ovrigt'];
+  btns.forEach((btn, i) => {
+    btn.classList.toggle('active', tabKeys[i] === activeTab);
+  });
 }
 
 function renderList() {
   const list = document.getElementById('taskList');
   const empty = document.getElementById('emptyMsg');
   let filtered = activeTab === 'alla' ? tasks : tasks.filter(t => t.cat === activeTab);
-  const todo = filtered.filter(t => !t.done);
+  const todo = filtered.filter(t => !t.done).sort((a, b) => {
+    const p = { hog: 0, normal: 1, lag: 2 };
+    return (p[a.prio]||1) - (p[b.prio]||1);
+  });
   const done = filtered.filter(t => t.done);
-  if (filtered.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  let html = '';
-  if (todo.length) {
-    html += todo.map(t => taskHTML(t)).join('');
+
+  if (todo.length === 0 && (!showDone || done.length === 0)) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
   }
-  if (done.length) {
-    html += `<div class="section-label">Klara (${done.length})</div>`;
+  empty.style.display = 'none';
+
+  let html = todo.map(t => taskHTML(t)).join('');
+
+  if (showDone && done.length) {
+    html += `<div class="section-label">Avklarade (${done.length})</div>`;
     html += done.map(t => taskHTML(t)).join('');
   }
   list.innerHTML = html;
 }
 
 function taskHTML(t) {
-  return `<div class="task ${t.done?'done':''}">
+  const cat = CATS[t.cat] || CATS.ovrigt;
+  const prioCls = t.prio === 'hog' ? 'prio-hog' : t.prio === 'lag' ? 'prio-lag' : '';
+  const prioBadge = t.prio === 'hog'
+    ? `<span class="prio-badge prio-hog-badge">Hög prio</span>`
+    : t.prio === 'lag' ? `<span class="prio-badge prio-lag-badge">Låg prio</span>` : '';
+  return `<div class="task ${t.done?'done':''} ${prioCls}">
     <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask(${t.id})" />
-    <span class="task-text">${t.text}</span>
-    <span class="badge ${CATS[t.cat].badge}">${CATS[t.cat].label}</span>
+    <div class="task-body">
+      <div class="task-text">${t.text}</div>
+      ${t.note ? `<div class="task-note">${t.note}</div>` : ''}
+      <div class="task-meta">
+        <span class="badge ${cat.badge}">${cat.icon} ${cat.label}</span>
+        ${prioBadge}
+        <span class="task-date">${formatDate(t.created)}</span>
+      </div>
+    </div>
     <button class="del-btn" onclick="deleteTask(${t.id})" title="Ta bort">×</button>
   </div>`;
 }
 
-function renderProgress() {
+function renderStats() {
+  const todo = tasks.filter(t => !t.done);
+  const done = tasks.filter(t => t.done);
+  const hog = tasks.filter(t => !t.done && t.prio === 'hog');
+  document.getElementById('statTodo').textContent = todo.length;
+  document.getElementById('statDone').textContent = done.length;
+  document.getElementById('statHog').textContent = hog.length;
   const total = tasks.length;
-  const done = tasks.filter(t => t.done).length;
-  const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+  const pct = total === 0 ? 0 : Math.round((done.length / total) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `${done} av ${total} klara`;
+  document.getElementById('progressText').textContent = `${done.length} av ${total} klara`;
   document.getElementById('progressPct').textContent = pct + '%';
 }
 
 function setTab(tab) { activeTab = tab; render(); }
 
 load();
-setInterval(load, 30000);
+setInterval(load, 20000);
 </script>
 </body>
 </html>
