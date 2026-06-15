@@ -31,6 +31,15 @@ const server = http.createServer((req, res) => {
 
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
 
+  const staticFiles = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml', '.ico': 'image/x-icon' };
+  const ext = path.extname(parsed.pathname).toLowerCase();
+  if (staticFiles[ext] && req.method === 'GET') {
+    const filePath = path.join(__dirname, parsed.pathname);
+    if (fs.existsSync(filePath)) { res.writeHead(200, { 'Content-Type': staticFiles[ext] }); res.end(fs.readFileSync(filePath)); }
+    else { res.writeHead(404); res.end('Not found'); }
+    return;
+  }
+
   if (parsed.pathname === '/' && req.method === 'GET') {
     const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
