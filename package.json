@@ -1,0 +1,10 @@
+{
+  "name": "lilla-mollegard",
+  "version": "1.0.0",
+  "description": "Att göra-lista för Lilla Möllegård",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
+}
